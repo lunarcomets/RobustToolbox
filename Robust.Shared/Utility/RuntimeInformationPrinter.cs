@@ -10,6 +10,7 @@ internal static class RuntimeInformationPrinter
     public static string[] GetInformationDump()
     {
         var version = typeof(RuntimeInformationPrinter).Assembly.GetName().Version;
+        var contentVersion = GameBuildInformation.GetBuildInfoFromConfig().Version;
 
         return new[]
         {
@@ -19,6 +20,7 @@ internal static class RuntimeInformationPrinter
             $"Processor: {Environment.ProcessorCount}x {SystemInformation.GetProcessorModel()}",
             $"Architecture: {RuntimeInformation.ProcessArchitecture}",
             $"Robust Version: {version}",
+            $"Content Version: {contentVersion}",
             $"Compile Options: {string.Join(';', GetCompileOptions())}",
             $"Intrinsics: {string.Join(';', SystemInformation.GetIntrinsics())}",
         };
